@@ -29,10 +29,19 @@
                     <label for="name">What is your name?</label>
                     <input type="text" id="name" class="form-control" placeholder="Your name here...">
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+
+                <div class="form-group">
+                    <label for="chatMessage">Input Message</label>
+                    <input type="text" id="chatMessage" class="form-control" placeholder="message.." />
+                </div>
+
+                <button id="chatSend" class="btn btn-default" type="button">Chat Send</button>
+               <!-- <button id="send" class="btn btn-default" type="submit">Send</button>-->
             </form>
         </div>
+
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">

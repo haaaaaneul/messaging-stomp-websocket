@@ -24,6 +24,10 @@ function connect() {
             debugger;
             showGreeting(JSON.parse(greeting.body).content);
         });
+
+        stompClient.subscribe('/topic/chat', function (chat) {
+            showChat(JSON.parse(chat.body));
+        });
     });
 }
 
@@ -43,6 +47,20 @@ function sendName() {
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
+
+/* Chat과 관련된 메서드 */
+function sendChat() {
+    stompClient.send("/app/chat", {}, JSON.stringify({'name': $("#name").val(), 'message': $("#chatMessage").val()}));
+}
+function showChat(chat) {
+    $("#greetings").append("<tr><td>" + chat.name + " : " + chat.message + "</td></tr>");
+}
+
+$(function () {
+    // ...
+
+    $( "#chatSend" ).click(function(){ sendChat(); }); // 추가
+});
 
 $(function () {
     $("form").on('submit', function (e) {
